@@ -1,0 +1,27 @@
+.toolbar{
+  z-index: 1;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.table{
+  margin: 0 100px;
+  background-color: blue;
+
+}
+
+.button-add{
+  margin-left: 100px;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1.5px rgb(17, 109, 33);
+  color: rgb(17, 109, 33);
+  width: 93px;
+  font-weight: bold;
+}
+
+.button-add:hover{
+  background-color: rgb(17, 109, 33);
+  color: white;
+}

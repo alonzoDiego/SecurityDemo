@@ -27,7 +27,7 @@ public class Graduate implements Serializable{
 	private Integer year;
 	
 	@Column(name="sex")
-	private boolean sex;
+	private String sex;
 	
 	@Column(name="type_course")
 	private String typeCourse;
