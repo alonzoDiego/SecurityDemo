@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="toolbar mat-elevation-z8">
+  <span>New Graduate</span>
+</mat-toolbar>
+
+<div class="container">
+  <form [formGroup]="formCreate" (ngSubmit)="onSubmit(formCreate.value)">
+    <div class="controles-container">
+      <mat-form-field class="input">
+        <input formControlName="year" type="number" matInput placeholder="Year">
+        <mat-error>This field is mandatory.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <input formControlName="typeCourse" matInput placeholder="Type Of Course">
+        <mat-error>Invalid email address.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <input formControlName="graduates" type="number" matInput placeholder="No. Of Graduates">
+        <mat-error >This field is mandatory.</mat-error>
+      </mat-form-field>
+      <div class="bottom-sex">
+        <mat-radio-group formControlName="sex">
+          <mat-radio-button value="males" class="bottom-sex-rad">Males</mat-radio-button>
+          <mat-radio-button value="females" class="bottom-sex-rad">Females</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" type="submit" class="button-row">Submit</button>
+      <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+    </div>
+  </form>
+</div>

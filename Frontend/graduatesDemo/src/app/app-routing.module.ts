@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './vistas/dashboard/dashboard.component'
+import { GraduateCustomComponent } from './vistas/graduate-custom/graduate-custom.component';
+import { GraduateEditComponent } from './vistas/graduate-edit/graduate-edit.component';
 
 
 const routes: Routes = [
@@ -12,6 +14,14 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'nuevo',
+    component: GraduateCustomComponent
+  },
+  {
+    path: 'editar/:id',
+    component: GraduateEditComponent
   }
 ];
 
@@ -20,3 +30,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingCompo = [DashboardComponent, GraduateCustomComponent, GraduateEditComponent]

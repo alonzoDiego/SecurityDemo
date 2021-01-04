@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <div class="button-add">
-  <button mat-button>Create<mat-icon>add</mat-icon></button>
+  <button mat-button (click)="onCreate()">Create<mat-icon>add</mat-icon></button>
 </div>
 
 <div class="table mat-elevation-z8">
@@ -27,8 +27,8 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-icon-button ><mat-icon>open_in_new</mat-icon></button>
-        <button mat-icon-button color="warn" ><mat-icon>delete_outline</mat-icon></button>
+        <button mat-icon-button (click)="onEdit(row)"><mat-icon>open_in_new</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="onDelete(row)"><mat-icon>delete_outline</mat-icon></button>
       </mat-cell>
     </ng-container>
 

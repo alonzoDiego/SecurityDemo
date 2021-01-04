@@ -1,0 +1,25 @@
+.title{
+  padding-bottom: 20px;
+}
+
+.container{
+  padding: 40px 40px;
+}
+
+.input{
+  display: block;
+  padding-bottom: 20px;
+}
+
+.bottom-sex{
+  padding-top: 10px;
+  padding-bottom: 40px;
+}
+
+.bottom-sex-rad{
+  padding-right: 20px;
+}
+
+.button-row{
+  margin-right: 110px;
+}
