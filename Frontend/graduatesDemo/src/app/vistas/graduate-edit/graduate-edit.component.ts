@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ListaGraduadosI } from '../../modelos/listaGraduados.interface';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router'
+import { AlertsService } from 'src/app/servicios/alerts/alerts.service';
 
 @Component({
   selector: 'app-graduate-edit',
@@ -14,14 +15,14 @@ export class GraduateEditComponent implements OnInit {
 
   graduate: ListaGraduadosI
 
-  constructor(private api: ApiService, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private api: ApiService, private router: Router, private activeRoute: ActivatedRoute, private alert: AlertsService) { }
 
   formEdit = new FormGroup({
     id: new FormControl(null),
-    year: new FormControl(null),
-    typeCourse: new FormControl(''),
-    graduates: new FormControl(null),
-    sex: new FormControl('')
+    year: new FormControl(null, Validators.required),
+    typeCourse: new FormControl('', Validators.required),
+    graduates: new FormControl(null, Validators.required),
+    sex: new FormControl('', Validators.required)
   });
 
   ngOnInit(): void {
@@ -39,9 +40,15 @@ export class GraduateEditComponent implements OnInit {
   }
 
   onSubmit(form: ListaGraduadosI){
-    this.api.putGraduate(form).subscribe(x =>{
-      console.log(x);
-    });
+    if(this.formEdit.valid){
+      this.api.putGraduate(form).subscribe(x =>{
+        console.log(x);
+      });
+      this.onClose()
+      this.alert.success('Successfully edited!!')
+    }else{
+      this.alert.error('Its necessary to fill the fields!')
+    }
   }
 
   onClose(){

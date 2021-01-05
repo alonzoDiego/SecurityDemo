@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.notif-success{
+  background: rgb(84, 155, 13);
+  color: white;
+}
+
+.notif-warn{
+  background: tomato;
+  color: white;
+}

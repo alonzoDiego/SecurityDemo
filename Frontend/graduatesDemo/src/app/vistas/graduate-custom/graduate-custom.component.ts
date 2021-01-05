@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ApiService } from 'src/app/servicios/conexion/api.service';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ListaGraduadosI } from '../../modelos/listaGraduados.interface';
-import { MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router'
+import { AlertsService } from 'src/app/servicios/alerts/alerts.service';
 
 @Component({
   selector: 'app-graduate-custom',
@@ -13,24 +12,29 @@ import { Router, ActivatedRoute } from '@angular/router'
 })
 export class GraduateCustomComponent implements OnInit {
 
-  constructor(private api: ApiService, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private api: ApiService, private router: Router, private alert: AlertsService) { }
 
   formCreate = new FormGroup({
     id: new FormControl(null),
-    year: new FormControl(null),
-    typeCourse: new FormControl(''),
-    graduates: new FormControl(null),
-    sex: new FormControl('')
+    year: new FormControl(null, Validators.required),
+    typeCourse: new FormControl('', Validators.required),
+    graduates: new FormControl(null, Validators.required),
+    sex: new FormControl('', Validators.required)
   })
 
   ngOnInit(): void {
   }
 
   onSubmit(form: ListaGraduadosI){
-    this.api.addNewGraduate(form).subscribe(x =>{
-      console.log(x);
-    });
-    this.onClose()
+    if(this.formCreate.valid){
+      this.api.addNewGraduate(form).subscribe(x =>{
+        console.log(x);
+      });
+      this.onClose()
+      this.alert.success('Successfully saved!!')
+    }else{
+      this.alert.error('Its necessary to fill the fields!')
+    }
   }
 
   onClose(){

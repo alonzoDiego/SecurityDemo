@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../servicios/conexion/api.service';
+import { AlertsService } from '../../servicios/alerts/alerts.service'
 
 import { ListaGraduadosI } from '../../modelos/listaGraduados.interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -19,7 +22,10 @@ export class DashboardComponent implements OnInit {
   dataSource: MatTableDataSource<ListaGraduadosI>;
   subs: Subscription;
 
-  constructor(private api: ApiService, private router: Router) { }
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  constructor(private api: ApiService, private router: Router, private alert: AlertsService) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.graduados);
@@ -28,9 +34,15 @@ export class DashboardComponent implements OnInit {
     this.subs = this.api.refreshTable.subscribe(() =>{
       this.getAllGraduates();
     })
+    this.ngAfterViewInit();
   }
 
-  public getAllGraduates(){
+  ngAfterViewInit(){
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator
+  }
+
+  getAllGraduates(){
     this.api.getAll().subscribe(x =>{
       this.dataSource.data = x;
     })
@@ -46,10 +58,11 @@ export class DashboardComponent implements OnInit {
   }
 
   onDelete(row){
-    if(confirm('Estas seguro de eliminar este registro ?')){
+    if(confirm('Are you sure to delete this record ?')){
       this.api.deleteGraduate(row.id).subscribe(x =>{
         console.log(row.id);
       })
+      this.alert.success('Successfully removed!!');
     }
   }
 
