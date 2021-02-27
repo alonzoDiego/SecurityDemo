@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class GraduateController {
 	@Autowired
 	private IGraduateService graduateService;
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	@ApiOperation(value="Crear Graduado", notes="Servicio para crear un nuevo graduado")
 	@ApiResponses(value= {@ApiResponse(code=201, message="Graduado creado correctamente"),
@@ -47,6 +49,7 @@ public class GraduateController {
 		return new ResponseEntity<Graduate>(graduateNew, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping
 	@ApiOperation(value="Actualizar Graduado", notes="Servicio para actualizar un graduado")
 	@ApiResponses(value= {@ApiResponse(code=201, message="Graduado actualizado correctamente"),
@@ -57,6 +60,7 @@ public class GraduateController {
 		return new ResponseEntity<Graduate>(HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping(value="/{id}")
 	@ApiOperation(value="Eliminar Graduado", notes="Servicio para eliminar un graduado")
 	@ApiResponses(value= {@ApiResponse(code=201, message="Graduado eliminado correctamente"),
