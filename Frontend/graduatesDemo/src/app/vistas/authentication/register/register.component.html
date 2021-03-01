@@ -1,0 +1,38 @@
+<div *ngIf="!isSignedIn">
+  <form [formGroup]="formRegister" (ngSubmit)="onRegister()">
+    <h2>Register</h2>
+    <mat-dialog-content>
+      <mat-form-field appearance="outline" class="input-data">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput placeholder="Insert Name">
+        <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-data">
+        <mat-label>Lastname</mat-label>
+        <input formControlName="lastName" matInput placeholder="Insert Lastname">
+        <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="email" placeholder="Insert Email">
+        <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>Username</mat-label>
+        <input formControlName="user" matInput type="text" placeholder="Insert Username">
+        <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input">
+        <mat-label>New Password</mat-label>
+        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Insert New Password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button mat-dialog-close type="submit" class="container_card-button container_card-button-design">Register</button>
+      <a mat-button mat-dialog-close class="container_card-button">Close</a>
+    </mat-dialog-actions>
+  </form>
+</div>

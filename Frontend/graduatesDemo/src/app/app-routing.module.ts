@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './vistas/dashboard/dashboard.component'
-import { GraduateCustomComponent } from './vistas/graduate-custom/graduate-custom.component';
-import { GraduateEditComponent } from './vistas/graduate-edit/graduate-edit.component';
+import { DashboardComponent } from './vistas/graduates/dashboard/dashboard.component'
+import { GraduateCustomComponent } from './vistas/graduates/graduate-custom/graduate-custom.component';
+import { GraduateEditComponent } from './vistas/graduates/graduate-edit/graduate-edit.component';
+import { LoginComponent } from './vistas/authentication/login/login.component';
+import { RegisterComponent } from './vistas/authentication/register/register.component';
+import { HomeComponent } from './vistas/home/home.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -22,6 +25,18 @@ const routes: Routes = [
   {
     path: 'editar/:id',
     component: GraduateEditComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   }
 ];
 

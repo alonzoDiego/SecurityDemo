@@ -1,0 +1,18 @@
+.input{
+  display: block;
+  margin: 0px 10px;
+}
+.input-data{
+  display: inline-block;
+  margin: 0px 10px;
+}
+.container_card-button{
+  display: inline-block;
+  border-radius: 20px;
+  height: 35px;
+  width: 100px;
+}
+.container_card-button-design{
+  background-color: indigo;
+  color: white;
+}

@@ -1,0 +1,51 @@
+.container{
+  margin: 100px 0px;
+  height: 470px;
+}
+.container_img{
+  display: inline-block;
+  border-radius: 240px;
+  height: 470px;
+  margin-right: 70px;
+  margin-left: 200px;
+}
+.container_card{
+  display: inline-block;
+  height: 470px;
+  margin-left: 70px;
+  position: absolute;
+}
+.container_card-mat{
+  height: 400px;
+  width: 400px;
+  margin-top: 20px;
+}
+.container_card-title{
+  text-align: center;
+}
+.container_card-button{
+  display: block;
+  border-radius: 20px;
+}
+.container_card-button-design{
+  background-color: indigo;
+  color: white;
+  width: 416px;
+}
+.button-log{
+  margin-bottom: 10px;
+}
+.container_card-content{
+  margin-top: 50px;
+}
+.input{
+  display: block;
+}
+.img-button{
+  height: 25px;
+  width: 25px;
+}
+.divisor-line{
+  display: inline-block;
+  width: 196px;
+}

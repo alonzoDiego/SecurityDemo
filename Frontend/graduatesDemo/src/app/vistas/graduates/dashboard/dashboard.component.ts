@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ApiService } from '../../servicios/conexion/api.service';
-import { AlertsService } from '../../servicios/alerts/alerts.service'
+import { ApiService } from '../../../servicios/conexion/api.service';
+import { AlertsService } from '../../../servicios/alerts/alerts.service'
 
-import { ListaGraduadosI } from '../../modelos/listaGraduados.interface';
+import { ListaGraduadosI } from '../../../modelos/listaGraduados.interface';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs';

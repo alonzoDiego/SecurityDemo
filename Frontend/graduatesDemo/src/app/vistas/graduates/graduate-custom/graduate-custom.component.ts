@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/conexion/api.service';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { ListaGraduadosI } from '../../modelos/listaGraduados.interface';
+import { ListaGraduadosI } from '../../../modelos/listaGraduados.interface';
 import { Router, ActivatedRoute } from '@angular/router'
 import { AlertsService } from 'src/app/servicios/alerts/alerts.service';
 

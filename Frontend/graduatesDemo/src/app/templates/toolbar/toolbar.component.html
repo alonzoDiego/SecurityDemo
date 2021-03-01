@@ -1,0 +1,25 @@
+<div>
+  <mat-toolbar color = "primary" class="toolbar" mat-elevation-z8>
+    <button mat-icon-button class="example-icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-flat-button [routerLink]="['/home']" class="buton-home">GraduatesDemo</a>
+    <span class="example-spacer"></span>
+    <!--<div class="logged_button" *ngIf = "user$ | async as user; else login">
+      <button mat-stroked-button class="buton">{{user?.email}}</button>
+      <button mat-raised-button *ngIf="user" color="primary" class="buton buton--sign" (click)="onLogout()">
+        Log out
+      </button>
+    </div>-->
+    <!--<ng-template #login>-->
+      <div class="logged_button">
+        <button mat-raised-button class="buton buton--style buton--log" [routerLink]="['/login']">
+          Log in
+        </button>
+        <button mat-raised-button color="primary" class="buton buton--sign" (click)="openRegister()">
+          Sign up
+        </button>
+      </div>
+    <!--</ng-template>-->
+  </mat-toolbar>
+</div>

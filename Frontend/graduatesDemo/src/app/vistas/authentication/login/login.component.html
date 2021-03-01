@@ -1,0 +1,45 @@
+<div class="text-center" *ngIf="isSignedIn; else loggedOut">
+  <h2>Ya has iniciado sesion</h2>
+</div>
+<ng-template #loggedOut>
+  <div class="container">
+    <img class="container_img" src="https://i.pinimg.com/originals/b9/f2/f6/b9f2f68294725b83c3c7b41527e8d193.jpg" alt="Hil Hidra">
+    <div class="container_card">
+      <mat-card class="container_card-mat">
+        <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+          <mat-card-title class="container_card-title">WELCOME</mat-card-title>
+          <mat-card-content class="container_card-content">
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Username</mat-label>
+              <input formControlName="user" matInput type="email" placeholder="Insert Username">
+              <mat-icon matSuffix>face</mat-icon>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Password</mat-label>
+              <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Insert Password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="button-log">
+              <button mat-raised-button type="submit" class="container_card-button container_card-button-design" [disabled]="!formLogin.valid">Login</button>
+            </div>
+            <a mat-button [routerLink]="['/forgot-password']" class="container_card-button">Have you forgotten the password?</a>
+
+            <hr  class="divisor-line"/><span> or </span><hr  class="divisor-line"/>
+
+            <div style="text-align: center; margin: 5px 0px;">
+              <button mat-fab color="transparent" aria-label="Button Google login" (click)="onGoodleLogin()">
+                <img class="img-button" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" alt="Google img">
+              </button>
+            </div>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</ng-template>
