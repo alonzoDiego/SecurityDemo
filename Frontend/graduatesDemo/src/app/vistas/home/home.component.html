@@ -1,1 +1,9 @@
-<h1>Hola Perracoooooooooooooo</h1>
+<app-toolbar></app-toolbar>
+<div style="text-align: center;" *ngIf="isLogged; else login">
+  <span>Welcome to GraduteDemo</span>
+</div>
+<ng-template #login>
+  <div style="text-align: center;">
+    <span>You are not logged in</span>
+  </div>
+</ng-template>

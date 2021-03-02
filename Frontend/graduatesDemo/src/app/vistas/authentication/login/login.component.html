@@ -1,5 +1,6 @@
+<app-toolbar></app-toolbar>
 <div class="text-center" *ngIf="isSignedIn; else loggedOut">
-  <h2>Ya has iniciado sesion</h2>
+  <app-home></app-home>
 </div>
 <ng-template #loggedOut>
   <div class="container">
@@ -18,7 +19,7 @@
             <mat-form-field appearance="outline" class="input">
               <mat-label>Password</mat-label>
               <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" placeholder="Insert Password">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+              <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
               <mat-error>This field is required</mat-error>
@@ -29,11 +30,9 @@
               <button mat-raised-button type="submit" class="container_card-button container_card-button-design" [disabled]="!formLogin.valid">Login</button>
             </div>
             <a mat-button [routerLink]="['/forgot-password']" class="container_card-button">Have you forgotten the password?</a>
-
             <hr  class="divisor-line"/><span> or </span><hr  class="divisor-line"/>
-
             <div style="text-align: center; margin: 5px 0px;">
-              <button mat-fab color="transparent" aria-label="Button Google login" (click)="onGoodleLogin()">
+              <button mat-fab color="transparent" aria-label="Button Google login" type="button" (click)="onGoodleLogin()">
                 <img class="img-button" src="https://cdn.worldvectorlogo.com/logos/google-icon.svg" alt="Google img">
               </button>
             </div>

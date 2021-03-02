@@ -29,9 +29,12 @@ export class GraduateCustomComponent implements OnInit {
     if(this.formCreate.valid){
       this.api.addNewGraduate(form).subscribe(x =>{
         console.log(x);
+        this.alert.success('Successfully saved!!')
+      }, err =>{
+        this.alert.error('Fail saved!!')
       });
       this.onClose()
-      this.alert.success('Successfully saved!!')
+
     }else{
       this.alert.error('Its necessary to fill the fields!')
     }

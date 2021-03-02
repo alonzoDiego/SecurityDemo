@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
 import { Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { TokenService } from 'src/app/servicios/token/token.service';
 
 
 @Component({
@@ -21,11 +22,13 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['year', 'sex', 'typeCourse', 'noGraduates', 'actions'];
   dataSource: MatTableDataSource<ListaGraduadosI>;
   subs: Subscription;
+  roles: string[];
+  isAdmin = false;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private api: ApiService, private router: Router, private alert: AlertsService) { }
+  constructor(private api: ApiService, private router: Router, private alert: AlertsService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.graduados);
@@ -35,6 +38,12 @@ export class DashboardComponent implements OnInit {
       this.getAllGraduates();
     })
     this.ngAfterViewInit();
+    this.roles = this.tokenService.getAuthoritites();
+    this.roles.forEach(role => {
+      if(role === 'ROLE_ADMIN'){
+        this.isAdmin = true
+      }
+    })
   }
 
   ngAfterViewInit(){
@@ -60,9 +69,10 @@ export class DashboardComponent implements OnInit {
   onDelete(row){
     if(confirm('Are you sure to delete this record ?')){
       this.api.deleteGraduate(row.id).subscribe(x =>{
-        console.log(row.id);
+        this.alert.success('Successfully removed!!');
+      }, err =>{
+        this.alert.error('Fail removed!!');
       })
-      this.alert.success('Successfully removed!!');
     }
   }
 

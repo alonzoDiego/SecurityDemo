@@ -43,9 +43,11 @@ export class GraduateEditComponent implements OnInit {
     if(this.formEdit.valid){
       this.api.putGraduate(form).subscribe(x =>{
         console.log(x);
+        this.alert.success('Successfully edited!!')
+      }, err =>{
+        this.alert.error('Fail edited!!')
       });
       this.onClose()
-      this.alert.success('Successfully edited!!')
     }else{
       this.alert.error('Its necessary to fill the fields!')
     }

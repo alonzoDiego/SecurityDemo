@@ -6,6 +6,7 @@ import { GraduateEditComponent } from './vistas/graduates/graduate-edit/graduate
 import { LoginComponent } from './vistas/authentication/login/login.component';
 import { RegisterComponent } from './vistas/authentication/register/register.component';
 import { HomeComponent } from './vistas/home/home.component';
+import { GradGuardsService as guard } from './servicios/guards/grad-guards.service';
 
 
 const routes: Routes = [
@@ -15,24 +16,27 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'nuevo',
-    component: GraduateCustomComponent
-  },
-  {
-    path: 'editar/:id',
-    component: GraduateEditComponent
-  },
-  {
     path: 'login',
     component: LoginComponent
   },
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [guard], data: {expectRole: ['admin', 'user']}
+  },
+  {
+    path: 'nuevo',
+    component: GraduateCustomComponent,
+    canActivate: [guard], data: {expectRole: ['admin']}
+  },
+  {
+    path: 'editar/:id',
+    component: GraduateEditComponent,
+    canActivate: [guard], data: {expectRole: ['admin']}
   },
   {
     path: 'home',

@@ -1,5 +1,6 @@
-<div class="button-add">
-  <button mat-button (click)="onCreate()">Create<mat-icon>add</mat-icon></button>
+<app-toolbar></app-toolbar>
+<div class="content-add">
+  <button mat-button class="button-add" (click)="onCreate()" *ngIf="isAdmin">Create<mat-icon>add</mat-icon></button>
 </div>
 
 <div class="table mat-elevation-z8">
@@ -23,8 +24,8 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-icon-button (click)="onEdit(row)"><mat-icon>open_in_new</mat-icon></button>
-        <button mat-icon-button color="warn" (click)="onDelete(row)"><mat-icon>delete_outline</mat-icon></button>
+        <button mat-icon-button class= "buton-action" (click)="onEdit(row)" [disabled]="!isAdmin"><mat-icon>open_in_new</mat-icon>Edit</button>
+        <button mat-icon-button color="warn" (click)="onDelete(row)" [disabled]="!isAdmin"><mat-icon>delete_outline</mat-icon>Delete</button>
       </mat-cell>
     </ng-container>
 

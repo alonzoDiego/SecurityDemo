@@ -15,6 +15,7 @@ import { LoginComponent } from './vistas/authentication/login/login.component';
 import { RegisterComponent } from './vistas/authentication/register/register.component';
 import { ToolbarComponent } from './templates/toolbar/toolbar.component';
 import { HomeComponent } from './vistas/home/home.component';
+import { interceptorProvider } from './servicios/interceptors/grad-interceptors.service'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { HomeComponent } from './vistas/home/home.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ApiService],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
