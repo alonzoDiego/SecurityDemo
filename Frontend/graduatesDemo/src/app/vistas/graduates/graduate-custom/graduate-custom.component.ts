@@ -33,15 +33,9 @@ export class GraduateCustomComponent implements OnInit {
       }, err =>{
         this.alert.error('Fail saved!!')
       });
-      this.onClose()
-
     }else{
       this.alert.error('Its necessary to fill the fields!')
     }
-  }
-
-  onClose(){
-    this.router.navigate(['dashboard']);
   }
 
 }

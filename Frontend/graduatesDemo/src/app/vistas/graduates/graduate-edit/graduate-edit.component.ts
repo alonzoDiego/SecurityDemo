@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/servicios/conexion/api.service';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ListaGraduadosI } from '../../../modelos/listaGraduados.interface';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router'
 import { AlertsService } from 'src/app/servicios/alerts/alerts.service';
 
@@ -13,9 +13,13 @@ import { AlertsService } from 'src/app/servicios/alerts/alerts.service';
 })
 export class GraduateEditComponent implements OnInit {
 
-  graduate: ListaGraduadosI
+  //graduate: ListaGraduadosI
 
-  constructor(private api: ApiService, private router: Router, private activeRoute: ActivatedRoute, private alert: AlertsService) { }
+  constructor(private api: ApiService,
+              private router: Router,
+              private activeRoute: ActivatedRoute,
+              private alert: AlertsService,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   formEdit = new FormGroup({
     id: new FormControl(null),
@@ -26,17 +30,24 @@ export class GraduateEditComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    let graduadoId = this.activeRoute.snapshot.paramMap.get('id');
-    this.api.getGraduate(graduadoId).subscribe(x =>{
-      this.graduate = x;
-      this.formEdit.setValue({
-        'id': this.graduate.id,
-        'year': this.graduate.year,
-        'typeCourse': this.graduate.typeCourse,
-        'graduates': this.graduate.graduates,
-        'sex': this.graduate.sex
-      })
-    });
+    //let graduadoId = this.activeRoute.snapshot.paramMap.get('id');
+    //this.api.getGraduate(graduadoId).subscribe(x =>{
+    //  this.graduate = x;
+    //  this.formEdit.setValue({
+    //    'id': this.graduate.id,
+    //    'year': this.graduate.year,
+    //    'typeCourse': this.graduate.typeCourse,
+    //    'graduates': this.graduate.graduates,
+    //    'sex': this.graduate.sex
+    //  })
+    //});
+    this.formEdit.setValue({
+      'id': this.data.id,
+      'year': this.data.year,
+      'typeCourse': this.data.typeCourse,
+      'graduates': this.data.graduates,
+      'sex': this.data.sex
+    })
   }
 
   onSubmit(form: ListaGraduadosI){
@@ -47,14 +58,9 @@ export class GraduateEditComponent implements OnInit {
       }, err =>{
         this.alert.error('Fail edited!!')
       });
-      this.onClose()
     }else{
       this.alert.error('Its necessary to fill the fields!')
     }
-  }
-
-  onClose(){
-    this.router.navigate(['dashboard']);
   }
 
 }

@@ -25,7 +25,11 @@ export class ApiService {
 
   addNewGraduate(graduado: ListaGraduadosI): Observable<ListaGraduadosI>{
     let direccion = this.url + "api/graduates";
-    return this.http.post<ListaGraduadosI>(direccion, graduado);
+    return this.http.post<ListaGraduadosI>(direccion, graduado).pipe(
+      tap(() => {
+        this.refresh.next();
+      })
+    );
   }
 
   getGraduate(id): Observable<ListaGraduadosI>{
@@ -35,7 +39,11 @@ export class ApiService {
 
   putGraduate(form: ListaGraduadosI): Observable<ListaGraduadosI>{
     let direccion = this.url + "api/graduates";
-    return this.http.put<ListaGraduadosI>(direccion, form);
+    return this.http.put<ListaGraduadosI>(direccion, form).pipe(
+      tap(() => {
+        this.refresh.next();
+      })
+    );
   }
 
   deleteGraduate(id): Observable<ListaGraduadosI>{

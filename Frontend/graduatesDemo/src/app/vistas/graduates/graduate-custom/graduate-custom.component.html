@@ -1,8 +1,7 @@
-<mat-toolbar color="primary" class="toolbar mat-elevation-z8">
-  <span>New Graduate</span>
-</mat-toolbar>
-
 <div class="container">
+  <h2>New Graduate</h2>
+</div>
+<div>
   <form [formGroup]="formCreate" (ngSubmit)="onSubmit(formCreate.value)">
     <div class="controles-container">
       <mat-form-field class="input">
@@ -26,7 +25,7 @@
     </div>
     <div>
       <button mat-raised-button color="primary" type="submit" class="button-row">Submit</button>
-      <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+      <button mat-raised-button color="warn" type="button" mat-dialog-close>Close</button>
     </div>
   </form>
 </div>

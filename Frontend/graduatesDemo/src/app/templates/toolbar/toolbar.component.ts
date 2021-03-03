@@ -25,7 +25,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   openRegister(){
-    this.dialog.open(RegisterComponent);
+    this.dialog.open(RegisterComponent, {disableClose: true});
   }
 
   onLogout(){

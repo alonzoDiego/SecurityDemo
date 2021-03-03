@@ -34,7 +34,8 @@ const routes: Routes = [
     canActivate: [guard], data: {expectRole: ['admin']}
   },
   {
-    path: 'editar/:id',
+    //path: 'editar/:id',
+    path: 'editar',
     component: GraduateEditComponent,
     canActivate: [guard], data: {expectRole: ['admin']}
   },

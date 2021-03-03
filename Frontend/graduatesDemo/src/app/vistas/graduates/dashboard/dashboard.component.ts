@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { TokenService } from 'src/app/servicios/token/token.service';
+import { MatDialog } from '@angular/material/dialog';
+import { GraduateCustomComponent } from '../graduate-custom/graduate-custom.component';
+import { GraduateEditComponent } from '../graduate-edit/graduate-edit.component';
 
 
 @Component({
@@ -28,7 +31,11 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private api: ApiService, private router: Router, private alert: AlertsService, private tokenService: TokenService) { }
+  constructor(private api: ApiService,
+              private router: Router,
+              private alert: AlertsService,
+              private tokenService: TokenService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.graduados);
@@ -38,6 +45,7 @@ export class DashboardComponent implements OnInit {
       this.getAllGraduates();
     })
     this.ngAfterViewInit();
+
     this.roles = this.tokenService.getAuthoritites();
     this.roles.forEach(role => {
       if(role === 'ROLE_ADMIN'){
@@ -58,12 +66,26 @@ export class DashboardComponent implements OnInit {
   }
 
   onCreate(){
-    this.router.navigate(['nuevo']);
+    const dialogSave = this.dialog.open(GraduateCustomComponent, {disableClose: true});
+    dialogSave.afterClosed().subscribe(res => {
+      if(res){
+        this.subs = this.api.refreshTable.subscribe(() =>{
+          this.getAllGraduates();
+        })
+      }
+    })
   }
 
   onEdit(row){
-    this.router.navigate(['editar', row.id]);
-    console.log(row.id);
+    const dialogUpdate = this.dialog.open(GraduateEditComponent, {disableClose: true, data: row});
+    dialogUpdate.afterClosed().subscribe(res => {
+      if(res){
+        this.subs = this.api.refreshTable.subscribe(() =>{
+          this.getAllGraduates();
+        })
+      }
+    })
+    //this.router.navigate(['editar', row.id]);
   }
 
   onDelete(row){
